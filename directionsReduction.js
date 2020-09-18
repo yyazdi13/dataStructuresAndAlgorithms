@@ -15,7 +15,7 @@ You will also return an array of characters, but with the most reduced direction
   Return an empty array if you're somehow already at your destination but didn't even notice!
 */
 
-/* Method 1
+/*  Method 1
 function directionReduce(arr){
     // make new array
     let newArr = [];
@@ -26,34 +26,28 @@ function directionReduce(arr){
     //go through the array and keep track of each
     for (let i = 0; i < arr.length; i++){
         if (arr[i] === "North"){
-            N++;
-            
-        }
-        else if (arr[i] === "West"){
+            N++; 
+        } else if (arr[i] === "West"){
             W++;
-        }
-        else if (arr[i] === "East"){
+        } else if (arr[i] === "East"){
             E++;
-    
-        }
-        else {
-            arr[i] === "South"
+        } else if (arr[i] === "South"){
             S++;
         }
-    }
+    };
 
     // if South and North don't cancel each other, add whichever is higher
-    if(N-S != 0){
+    if(N-S > 0 || S-N > 0){
         var north = N-S;
         var south = S-N;
         let i =0;
+
         if (N > S){
-        while (i < north){
+            while (i < north){
             newArr.push("North");
             i++;
-        }
-        }
-        else {
+            };
+        } else {
             while(i < south){
                 newArr.push("South")
                     i++;
@@ -63,7 +57,7 @@ function directionReduce(arr){
     }
 
     // if E and W dont cancel out, add whichever is higher
-    if (E-W != 0){
+    if (E-W > 0 || W-E > 0){
         let i = 0;
         var east = E-W;
         var west = W-E;
