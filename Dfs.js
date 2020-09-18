@@ -40,15 +40,15 @@ airports.forEach(addNode);
 routes.forEach(route => {
     addEdge(...route);
 });
-console.log(adjacencyList);
+
 
 // Depth-first Search (DFS) will go as far into the graph as possible until 
 // it reaches a node without any children, at which point it backtracks and continues the process. 
 // The algorithm can be implemented with a recursive function that keeps track of previously visited nodes. 
 // If a node has not been visited, we call the function recursively.
-
-function Dfs(start, visited = new Set()){
-    console.log(start);
+let count = 0;
+let visited = new Set();
+function Dfs(start, visited){
 
     visited.add(start);
 
@@ -56,13 +56,16 @@ function Dfs(start, visited = new Set()){
 
     for (const destination of destinations){
         if(destination === 'BKK'){
-            console.log('Dfs found Bangkok');
+            count++;
+            // console.log(`Dfs found Bangkok in ${count} steps`);
             return;
         }
         if (!visited.has(destination)){
+            console.log(destination)
+            count++;
             Dfs(destination, visited);
         }
     }
 }
 
-Dfs('PHX');
+Dfs('PHX', visited);

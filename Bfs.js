@@ -33,22 +33,23 @@ routes.forEach(route => addEdge(...route))
 function bfs(start){
     const visited = new Set();
     var queue = [start];
+    var count = 0;
 
     while (queue.length > 0){
         const airport = queue.shift(); //remove first element and return it;
         const destinations = adjacencyList.get(airport);
-
         for (destination of destinations){
-            // console.log(destination);
+            
             if(destination == 'BKK'){
-                return console.log('BKK found');
-            }
+                count++;
+                return console.log(`BKK found in ${count} steps`);
+            } 
 
             if(!visited.has(destination)){
                 console.log(destination)
+                count++
                 visited.add(destination);
                 queue.push(destination);
-                console.log(queue)
             }
         }
     }
